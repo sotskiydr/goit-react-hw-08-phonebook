@@ -5,21 +5,30 @@ import { authSelectors } from '../../store/auth';
 import { useSelector } from 'react-redux';
 
 const Navigation = () => {
-  const name = useSelector(authSelectors.getUsername);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
     <>
       <ul>
         <li>
-          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/">Home</NavLink>
         </li>
-        <li>
-          <NavLink to="/registration">Register</NavLink>
-        </li>
-        <li>
-          <NavLink to="/contacts">Contacts</NavLink>
-        </li>
+        {!isLoggedIn && (
+          <>
+            <li>
+              <NavLink to="/login">Login</NavLink>
+            </li>
+            <li>
+              <NavLink to="/registration">Register</NavLink>
+            </li>
+          </>
+        )}
+        {isLoggedIn && (
+          <li>
+            <NavLink to="/contacts">Contacts</NavLink>
+          </li>
+        )}
       </ul>
-      {name && <UserMenu />}
+      {isLoggedIn && <UserMenu />}
     </>
   );
 };

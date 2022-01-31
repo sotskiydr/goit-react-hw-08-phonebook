@@ -1,8 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { authOperations } from './store/auth';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
+import { authOperations, authSelectors } from './store/auth';
 import './App.css';
 
 const Navigation = lazy(() => import('./components/Navigation/Navigation'));
@@ -13,22 +15,52 @@ const LoginForm = lazy(() => import('./LoginForm/LoginForm'));
 
 export default function App() {
   const dispatch = useDispatch();
-
+  const refreshing = useSelector(authSelectors.getRefreshingStatus);
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
   return (
-    <>
-      <Suspense fallback={<p>Loading...</p>}>
-        <Navigation />
-        <Routes>
-          <Route exact path="/" element={<MainPage />}></Route>
-          <Route path="/contacts" element={<Contacts />}></Route>
-          <Route path="/registration" element={<RegForm />}></Route>
-          <Route path="/login" element={<LoginForm />}></Route>
-        </Routes>
-      </Suspense>
-    </>
+    !refreshing && (
+      <>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Navigation />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <PublicRoute>
+                  <MainPage />
+                </PublicRoute>
+              }
+            ></Route>
+            <Route
+              path="/registration"
+              element={
+                <PublicRoute restricted>
+                  <RegForm />
+                </PublicRoute>
+              }
+            ></Route>
+            <Route
+              path="/login"
+              element={
+                <PublicRoute restricted>
+                  <LoginForm />
+                </PublicRoute>
+              }
+            ></Route>
+            <Route
+              path="/contacts"
+              element={
+                <PrivateRoute>
+                  <Contacts />
+                </PrivateRoute>
+              }
+            ></Route>
+          </Routes>
+        </Suspense>
+      </>
+    )
   );
 }
