@@ -9,7 +9,7 @@ import './App.css';
 
 const Navigation = lazy(() => import('./components/Navigation/Navigation'));
 const Contacts = lazy(() => import('./components/Contacts/Contacts'));
-const MainPage = lazy(() => import('./components/MainPage/MainPage'));
+const HomePage = lazy(() => import('./components/HomePage/HomePage'));
 const RegForm = lazy(() => import('./components/RegForm/RegForm'));
 const LoginForm = lazy(() => import('./LoginForm/LoginForm'));
 
@@ -30,7 +30,7 @@ export default function App() {
               path="/"
               element={
                 <PublicRoute>
-                  <MainPage />
+                  <HomePage />
                 </PublicRoute>
               }
             ></Route>

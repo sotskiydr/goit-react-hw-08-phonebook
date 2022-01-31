@@ -42,31 +42,39 @@ export default function RegForm() {
 
   return (
     <div>
-      <h1>Страница регистрации</h1>
+      <h1>Sign Up</h1>
 
       <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
         <label style={styles.label}>
-          Имя
-          <input type="text" name="name" value={name} onChange={handleChange} />
+          Name
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={handleChange}
+            required
+          />
         </label>
 
         <label style={styles.label}>
-          Почта
+          Email
           <input
             type="email"
             name="email"
             value={email}
             onChange={handleChange}
+            required
           />
         </label>
 
         <label style={styles.label}>
-          Пароль
+          Password
           <input
             type="password"
             name="password"
             value={password}
             onChange={handleChange}
+            required
           />
         </label>
 
