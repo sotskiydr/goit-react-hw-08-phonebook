@@ -1,0 +1,31 @@
+.nav {
+  display: flex;
+  border: 1px solid black;
+  border-top: none;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  width: 100%;
+  padding: 5px;
+}
+.list {
+  display: flex;
+}
+.item {
+  font-size: 20px;
+  padding: 10px;
+  &:not(:last-child) {
+    margin-right: 15px;
+  }
+}
+.active {
+  color: #f36666;
+  &:hover {
+    color: #ef2828;
+  }
+}
+.link {
+  color: black;
+  &:hover {
+    color: #ef2828;
+  }
+}

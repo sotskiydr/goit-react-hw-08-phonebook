@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import { authOperations, authSelectors } from './store/auth';
-import './App.css';
+import styles from './App.module.scss';
 
 const Navigation = lazy(() => import('./components/Navigation/Navigation'));
 const Contacts = lazy(() => import('./components/Contacts/Contacts'));
@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     !refreshing && (
-      <>
+      <section className={styles['main-container']}>
         <Suspense fallback={<p>Loading...</p>}>
           <Navigation />
           <Routes>
@@ -60,7 +60,7 @@ export default function App() {
             ></Route>
           </Routes>
         </Suspense>
-      </>
+      </section>
     )
   );
 }

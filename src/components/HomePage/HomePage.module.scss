@@ -1,0 +1,24 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 400px;
+  text-align: center;
+}
+.title {
+  font-size: 50px;
+}
+.description {
+  font-size: 26px;
+}
+
+.name-accent {
+  color: #28c728;
+}
+.link {
+  color: #f36666;
+  &:hover {
+    color: #ef2828;
+  }
+}

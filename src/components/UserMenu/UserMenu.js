@@ -1,30 +1,21 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors, authOperations } from '../../store/auth';
-
-const styles = {
-  container: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  avatar: {
-    marginRight: 4,
-  },
-  name: {
-    fontWeight: 700,
-    marginRight: 12,
-  },
-};
+import styles from './UserMenu.module.scss';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
   const name = useSelector(authSelectors.getUsername);
-  //   const avatar = defaultAvatar;
 
   return (
-    <div style={styles.container}>
-      {/* <img src={avatar} alt="" width="32" style={styles.avatar} /> */}
-      <span style={styles.name}>Welcome, {name}</span>
-      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
+    <div className={styles['user-menu']}>
+      <span className={styles.name}>
+        Welcome, <span className={styles['name-accent']}>{name}</span> !
+      </span>
+      <button
+        className={styles.btn}
+        type="button"
+        onClick={() => dispatch(authOperations.logOut())}
+      >
         Exit
       </button>
     </div>

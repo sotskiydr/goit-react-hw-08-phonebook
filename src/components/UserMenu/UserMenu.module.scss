@@ -1,0 +1,28 @@
+.user-menu {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  margin-left: 25%;
+  width: 100%;
+  padding-right: 15px;
+}
+.name {
+  font-size: 20px;
+  padding: 10px;
+}
+.name-accent {
+  color: #28c728;
+}
+.btn {
+  background-color: #f36666;
+  align-self: center;
+  height: 35px;
+  width: 150px;
+  margin-left: auto;
+  border: none;
+  border-radius: 3px;
+  &:hover,
+  &:focus {
+    background: #ef2828;
+  }
+}
