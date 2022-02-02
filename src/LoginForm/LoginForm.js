@@ -1,20 +1,17 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { authOperations } from '../store/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { authOperations, authSelectors } from '../store/auth';
 
-const styles = {
-  form: {
-    width: 320,
-  },
-  label: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 15,
-  },
-};
+import styles from './LoginForm.module.scss';
+import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+const ariaLabel = { 'aria-label': 'description' };
 
 export default function LoginForm() {
   const dispatch = useDispatch();
+  const error = useSelector(authSelectors.getError);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -37,34 +34,49 @@ export default function LoginForm() {
   };
 
   return (
-    <div>
-      <h1>Sign In</h1>
+    <div className={styles.formContainer}>
+      <Box
+        className={styles.form}
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          '& > :not(style)': { m: 1 },
+        }}
+        autoComplete="off"
+      >
+        <Input
+          className={styles.input}
+          placeholder="Login"
+          inputProps={ariaLabel}
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          required
+        />
+        <Input
+          className={styles.input}
+          placeholder="Password"
+          inputProps={ariaLabel}
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          required
+        />
 
-      <form onSubmit={handleSubmit} style={styles.form} autoComplete="off">
-        <label style={styles.label}>
-          Email
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            required
-          />
-        </label>
-
-        <label style={styles.label}>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            required
-          />
-        </label>
-
-        <button type="submit">Войти</button>
-      </form>
+        <Stack direction="row" spacing={2}>
+          <Button
+            className={styles.btn}
+            variant="contained"
+            type="submit"
+            color="success"
+          >
+            Sign In
+          </Button>
+        </Stack>
+      </Box>
+      {error && <p className={styles.error}>*Incorrect login or password</p>}
     </div>
   );
 }
