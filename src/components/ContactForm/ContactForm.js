@@ -87,7 +87,7 @@ const ContactForm = ({ onSubmit }) => {
           </Button>
         </Stack>
       </Box>
-      {error && <p>contact already exists</p>}
+      {error && <p className={styles.error}>*Contact already exists</p>}
     </div>
   );
 };

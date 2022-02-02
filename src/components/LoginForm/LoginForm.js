@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { authOperations, authSelectors } from '../store/auth';
+import { authOperations, authSelectors } from '../../store/auth';
 
 import styles from './LoginForm.module.scss';
 import Box from '@mui/material/Box';
