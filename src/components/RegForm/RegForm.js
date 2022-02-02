@@ -10,7 +10,7 @@ const ariaLabel = { 'aria-label': 'description' };
 
 export default function RegForm() {
   const dispatch = useDispatch();
-  const error = useSelector(authSelectors.getError);
+  const error = useSelector(authSelectors.getErrorReg);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

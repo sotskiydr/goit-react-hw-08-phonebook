@@ -11,7 +11,7 @@ const ariaLabel = { 'aria-label': 'description' };
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const error = useSelector(authSelectors.getError);
+  const error = useSelector(authSelectors.getErrorLog);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

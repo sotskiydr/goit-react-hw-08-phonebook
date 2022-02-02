@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, Suspense, lazy } from 'react';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
@@ -23,7 +25,13 @@ export default function App() {
   return (
     !refreshing && (
       <section className={styles['main-container']}>
-        <Suspense fallback={<p>Loading...</p>}>
+        <Suspense
+          fallback={
+            <Box sx={{ width: '100%' }}>
+              <LinearProgress />
+            </Box>
+          }
+        >
           <Navigation />
           <Routes>
             <Route

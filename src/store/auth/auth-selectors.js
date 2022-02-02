@@ -1,5 +1,6 @@
 const getIsLoggedIn = state => state.auth.isLoggedIn;
-const getError = state => state.auth.error;
+const getErrorLog = state => state.auth.errorLog;
+const getErrorReg = state => state.auth.errorReg;
 
 const getUsername = state => state.auth.user.name;
 
@@ -9,6 +10,7 @@ const authSelectors = {
   getIsLoggedIn,
   getUsername,
   getRefreshingStatus,
-  getError,
+  getErrorLog,
+  getErrorReg,
 };
 export default authSelectors;
